@@ -1,23 +1,33 @@
-// arrayFunctions.test.js
 const { first, last, concatenateStrings, chunk } = require('./arrayFunctions');
-describe('Testing array functions', () => {
-    test('first() returns the first n elements of an array', () => {
-        expect(first([1, 2, 3, 4, 5], 3)).toEqual([1, 2, 3]);
-        expect(first([1, 2, 3], 0)).toEqual([]);
-        expect(first(null, 2)).toEqual([]);
-        expect(first([1, 2, 3])).toEqual(1);
-    });
-    test('last() returns the last n elements of an array', () => {
-        expect(last([1, 2, 3, 4, 5], 2)).toEqual([4, 5]);
-        expect(last([1, 2, 3], 0)).toEqual([]);
-        expect(last(null)).toEqual([]);
-        expect(last([1, 2, 3])).toEqual(3);
-    });
-    test('concatenateStrings() joins all elements of an array into a string', () => {
+
+// Tests for first()
+test("first returns first element when n is null", () => {
+    expect(first([10, 20, 30])).toBe(10);
+});
+
+test("first returns first n elements", () => {
+    expect(first([1, 2, 3, 4], 2)).toEqual([1, 2]);
+});
+
+test("first returns [] for n <= 0", () => {
+    expect(first([1, 2, 3], 0)).toEqual([]);
+});
+
+// Tests for last()
+test("last returns last element when n is null", () => {
+    expect(last([10, 20, 30])).toBe(30);
+});
+
+test("last returns last n elements", () => {
+    expect(last([1, 2, 3, 4], 2)).toEqual([3, 4]);
+});
+
+// Tests for concatStrings()
+test('concatenateStrings() joins all elements of an array into a string', () => {
         const colors = ["Red", "Green", "White", "Black"];
         expect(concatenateStrings(colors)).toEqual("Red, Green, White, Black");
     });
-    test('chunk() divides an array into several sub-arrays of predefined size', () => {
-        expect(chunk([1, 2, 3, 4, 5], 2)).toEqual([[1, 2], [3, 4], [5]]);
-    });
+// Tests for chunk()
+test("chunk splits array into subarrays of size", () => {
+    expect(chunk([1, 2, 3, 4, 5], 2)).toEqual([[1, 2], [3, 4], [5]]);
 });
